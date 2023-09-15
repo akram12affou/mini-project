@@ -1,0 +1,26 @@
+.newPost-form-container{
+    
+        button{
+            border: 1px black solid;
+            border-radius: 5px;
+            padding: 4px;
+            width: 100px;
+            margin: 0 auto;
+            cursor: pointer;
+            font-size: 15px;
+            background: #e4e4e4;
+            transition: all 0.2s ease;
+            margin-left: 10px;
+             &:hover{
+                transform: scale(1.05);
+             }
+         }
+         input{
+            padding: 4px;
+            border-radius: 5px;
+            outline: none;
+            border: 1.5px solid #000000;
+           
+         }
+    
+}
