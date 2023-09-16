@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import "../styles/AddPost.scss";
 import axios from "axios";
-import {useCookies} from 'react-cookie'
+import { useCookies } from "react-cookie";
 
 function AddPost() {
-  const [cookies, setCookie, removeCookie] = useCookies(['accestoken']);
-
+  const [cookies, setCookie, removeCookie] = useCookies(["accestoken"]);
   const [newPost, setNewPoost] = useState("");
   const addPost = () => {
     axios
-      .post("http://localhost:3000/posts/add-post", {
+      .post("http://localhost:3000/posts/add-post/" + cookies.accestoken, {
         text: newPost,
         userId: window.localStorage.getItem("userId"),
         username: window.localStorage.getItem("username"),
       })
-      .then((res) => {
-
+      .then((res) => {})
+      .catch((err) => {
+        alert(err.response.data);
       });
   };
   return (

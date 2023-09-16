@@ -13,6 +13,7 @@ function Posts() {
     axios.get("http://localhost:3000/posts").then((res) => {
       setPosts(res.data);
       setLoading(false);
+     
     });
   }, []);
   const deleteTodo = (id) => {
@@ -28,7 +29,7 @@ function Posts() {
             <div key={e._id}>
              {e.username==window.localStorage.getItem("username") ?  <code>user: you</code> :  <code>user: {e.username}</code>}
               <h2>{e.text}</h2>
-            {e.username==window.localStorage.getItem("username") && <button onClick={deleteTodo}>delete</button>}
+            {e.username==window.localStorage.getItem("username") && <button onClick={() => deleteTodo(e._id)}>delete</button>}
 
             </div>
           );
