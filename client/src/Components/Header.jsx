@@ -15,10 +15,10 @@ function Header() {
        <h2>Post App</h2>
        <div>
           <button onClick={() => navigate('/')}>Home</button>
-          |  {' '}
+            {' '}
           {cookies.accestoken ? 
           <>
-          {window.localStorage.getItem('username')} |
+        <p>{window.localStorage.getItem('username')}</p>  
           <button onClick={logout}>Logout</button>
           
           </>

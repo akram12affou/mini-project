@@ -2,9 +2,19 @@ const express = require('express')
 const mongoose = require('mongoose')
 const {userRoute}  =require('./routes/users')
 const {postRoute}  =require('./routes/posts')
-const cors = require('cors')   
-const app = express()     
-app.use(cors()) 
+const cors = require('cors')  
+const cookieParser = require('cookie-parser'); 
+const app = express()      
+// app.use(cors()) 
+app.use(cookieParser());
+
+app.use(  
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(express.json())
 app.use('/users' , userRoute)
 app.use('/posts' , postRoute)

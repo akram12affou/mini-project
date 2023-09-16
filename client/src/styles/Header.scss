@@ -6,6 +6,7 @@ body{
     margin: 0;
     padding: 0;
 }
+
 .header-container{
     border-bottom: 2px solid black ;
     height: 50px;
@@ -15,6 +16,20 @@ body{
     justify-content: space-between;
     width: 90%;
     margin: 0 auto;
+    div{
+        display: flex;
+        align-items: center;
+        p{
+            margin-left: 12px;
+            border-radius: 5px;
+            border : 3px solid rgb(248, 2, 2);
+            padding: 3px 12px;
+            background-color: orangered;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
     div button{
         margin-left: 15px;
         border: none;

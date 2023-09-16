@@ -14,6 +14,14 @@ function Auth() {
     setRegister(!register);
   };
   const authOperation = () => {
+    // if(username.length < 8){
+    //   alert('bad username')
+    //   return
+    // }
+    // if(password.length < 8){
+    //   alert('bad bad')
+    //   return
+    // }
     if (register) {
       axios
         .post("http://localhost:3000/users/register", {
