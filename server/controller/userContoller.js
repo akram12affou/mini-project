@@ -1,35 +1,35 @@
-const { userModel } = require("../models/users");
-const jwt = require("jsonwebtoken");
+const {User}= require("../models/Users");
+const jwt= require("jsonwebtoken");
+const {generatetoken} = require('../utils/generateToken')
 const bcrypt = require("bcrypt");
-const login = async (req,res) => {
+const login = async (req,res,next) => {
         const { username, password } = req.body;
-        const user = await userModel.find({ username });
+        const user = await User.find({ username });
         if (!user[0]) {
-          res.status(400).json("user Not Found");
-        } else {
-          const MachedPassword = await bcrypt.compare(password, user[0].password);
+          res.status(400)
+          const error = new Error("user Not Found")
+          next(error);
+        } else {   
+           const MachedPassword = await bcrypt.compare(password, user[0].password);
           if (MachedPassword) {
-            const accestoken = await jwt.sign({ id: user[0].id }, "secret");
-            res.cookie("accestoken", accestoken, { httpOnly: true });
-            res.json({ accestoken, id: user[0].id, name: user[0].username });
-          } else {
+            generatetoken(res,user)
+          } else { 
             res.status(400).json("password or username incorrect");
           }
-        } 
+        }
       }
-  
 const register = async (req,res) => {
     const { username, password } = req.body;
-  const user = await userModel.find({ username });
+  const user = await User.find({ username });
   if (user.length !== 0) {
     res.status(400).json("unvalid");
   } else {
-    const passwordDB = await bcrypt.hash(password, 10);
-    const newuser = userModel({
+    const newuser = User({
       username,
-      password: passwordDB,
+      password,
     });
     newuser.save();
+    generatetoken(res,user)
     res.json("created");
   }
 }

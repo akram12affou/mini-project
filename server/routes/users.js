@@ -5,7 +5,7 @@ const {
 } = require('../controller/userContoller')
 
  
-userRoute.post("/register", (req,res)=>register(req,res));
-userRoute.post("/login",(req, res)=>login(req,res));
+userRoute.post("/register", register);
+userRoute.post("/login",login);
 
 module.exports = { userRoute };

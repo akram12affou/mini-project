@@ -14,38 +14,12 @@ function Auth() {
     setRegister(!register);
   };
   const authOperation = () => {
-    // if(username.length < 8){
-    //   alert('bad username')
-    //   return
-    // }
-    // if(password.length < 8){
-    //   alert('bad bad')
-    //   return
-    // }
     if (register) {
       axios
         .post("http://localhost:3000/users/register", {
           username,
           password,
-        })
-        .then((res) => {
-          if (res.data == "created") {
-            axios
-              .post("http://localhost:3000/users/login", {
-                username,
-                password,
-              })
-              .then((res) => {
-                setCookie("accestoken", res.data.accestoken);
-                window.localStorage.setItem("userId", res.data.id);
-                window.localStorage.setItem("username", res.data.name);
-                nav("/");
-              })
-              .catch((err) => {
-                alert(err.response.data);
-              });
-          }
-        })
+        }).then(res => console.log(res))
         .catch((err) => {
           console.log(err.response.data);
         });
